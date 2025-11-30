@@ -40,7 +40,14 @@ public class InformationController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteInformation(@PathVariable Long id){
+        informationService.deleteInformationById(id);
+        return ResponseEntity.ok("Information deleted");
+    }
 
+    @PatchMapping("/change/{id}")
+    public ResponseEntity<String> updateInformation(@PathVariable Long id ,@RequestBody InformationDto information){
+        informationService.changeInformation(id, information);
+        return ResponseEntity.ok("Information updated");
     }
 
 

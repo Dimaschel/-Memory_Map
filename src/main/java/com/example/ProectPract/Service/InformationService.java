@@ -39,6 +39,7 @@ public class InformationService {
        return informationRepository.findById(id).orElseThrow(()-> new RuntimeException("Information not found"));
     }
 
+    @Transactional
     public void deleteInformationById(Long id){
         Information inf = informationRepository.findById(id).orElseThrow(()-> new RuntimeException("Information not found"));
         User user = inf.getUser();
@@ -51,6 +52,21 @@ public class InformationService {
         }
 
         informationRepository.deleteById(id);
+    }
+
+    public void changeInformation(Long id, InformationDto informationDto){
+        Information inf = informationRepository.findById(id).orElseThrow(()-> new RuntimeException("Information not found"));
+        User user = inf.getUser();
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User curUser = (User) auth.getPrincipal();
+
+        if(!user.equals(curUser)){
+            throw new RuntimeException("Only owner can update information");
+        }
+
+       Information information =  informationMapper.updateEntityFromDto(informationDto, inf);
+        informationRepository.save(information);
     }
 
 }

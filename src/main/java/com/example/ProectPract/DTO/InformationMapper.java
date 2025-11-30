@@ -30,7 +30,7 @@ public class InformationMapper {
         return dto;
     }
 
-    public void updateEntityFromDto(InformationDto dto, Information information) {
+    public Information updateEntityFromDto(InformationDto dto, Information information) {
         if (dto.getAvatarUrl() != null) {
             information.setAvatarUrl(dto.getAvatarUrl());
         }
@@ -46,5 +46,6 @@ public class InformationMapper {
         if (dto.getBio() != null) {
             information.setBIO(dto.getBio());
         }
+        return information;
     }
 }

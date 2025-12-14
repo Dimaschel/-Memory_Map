@@ -5,7 +5,6 @@ import com.example.ProectPract.DTO.InformationMapper;
 import com.example.ProectPract.DTO.InformationResponseDto;
 import com.example.ProectPract.Entity.Information;
 import com.example.ProectPract.Service.InformationService;
-import com.example.ProectPract.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
